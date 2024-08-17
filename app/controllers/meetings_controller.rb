@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
 
   def new
     if params[:session_id].present?
-      # we get session_id, sumary, action_items, report_url, start_time, end_time and title
+      # we get session_id, sumary, report_url, start_time, end_time and title
       session_id = params[:session_id]
       title = params[:title]
       start_time = params[:start_time]
@@ -19,7 +19,6 @@ class MeetingsController < ApplicationController
       puts "Start Time: #{start_time}"
       puts "End Time: #{end_time}"
       puts "Summary: #{summary}"
-      puts "Action Items: #{action_items}"
       puts "Report URL: #{report_url}"
 
       render json: { message: "Meeting created successfully" }
