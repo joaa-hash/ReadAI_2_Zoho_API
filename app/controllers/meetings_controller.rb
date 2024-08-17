@@ -8,7 +8,7 @@ class MeetingsController < ApplicationController
     if params[:session_id].present?
       # Send data in params to ZOHO API
       # we response succesfully
-      pust params
+      puts params
       render json: { message: "Meeting created successfully" }
     else
     response = { message: "We did not receive meeting data" }
