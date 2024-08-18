@@ -98,7 +98,7 @@ class MeetingsController < ApplicationController
       puts "Expires In: #{@expires_in}"
       json_data
     else
-      pust "Error: #{response.code} - #{response.body}"
+      puts "Error: #{response.code} - #{response.body}"
       nil
     end
   end
