@@ -47,18 +47,26 @@ class MeetingsController < ApplicationController
     # Prepare the request options
     options = {
       headers: {
-        "Authorization" => "Zoho-oauthtoken #{ENV['ZOHO_ACCESS_TOKEN']}",
+        "Authorization" => "Zoho-oauthtoken #{@access_token}",
         "Content-Type" => "application/json"
       },
       body: {
-        session_id: params[:session_id],
-        summary: params[:summary],
-        action_items: params[:action_items],
-        report_url: params[:report_url]
+        data: [
+          {
+            Name: params[:title],
+            title: params[:title],
+            session_id: params[:session_id],
+            summary: params[:summary],
+            action_items: params[:action_items],
+            report_url: params[:report_url]
+          }
+        ]
+
       }.to_json
     }
     # Sending the POST request
-    response = self.class.post("/meetings", options)
+    meetings_url = "https://www.zohoapis.com/crm/v2/Read_AI_meetings"
+    response = HTTParty.post(meetings_url, options)
     puts response
 
     # Handling the response
@@ -98,7 +106,7 @@ class MeetingsController < ApplicationController
       puts "Expires In: #{@expires_in}"
       json_data
     else
-      puts "Error: #{response.code} - #{response.body}"
+      puts "Error came from Zoho: #{response.code} - #{response.message}"
       nil
     end
   end
