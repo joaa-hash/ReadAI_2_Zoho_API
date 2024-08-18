@@ -3,14 +3,11 @@ class MeetingsController < ApplicationController
   def initialize
     @zoho_client_id = ENV["ZOHO_CLIENT_ID"]
     @zoho_client_secret = ENV["ZOHO_CLIENT_SECRET"]
-    @zoho_auth_code = ENV["ZOHO_AUTH_CODE"]
-
-    # store the access token in the session
-    @access_token
-    @refersh_token
-    @expires_in
-
-    get_access_token
+    # refresh token does not expire, it is used to get a new access token
+    @refresh_token = ENV["ZOHO_REFRESH_TOKEN"]
+    # acces_token is valid for 1 hour
+    @access_token = nil
+    @expires_in = Time.now
   end
   def index
     response = { message: "Hello, World!" }
