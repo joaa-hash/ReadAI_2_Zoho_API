@@ -78,6 +78,34 @@ class MeetingsController < ApplicationController
     end
   end
 
+  def refresh_access_token
+    puts "Refreshing the access token"
+    auth_uri = "https://accounts.zoho.com/oauth/v2/token"
+    options = {
+      headers: {
+        "Content-Type" => "application/x-www-form-urlencoded"
+      },
+      body: {
+        client_id: @zoho_client_id,
+        client_secret: @zoho_client_secret,
+        refresh_token: @refresh_token,
+        grant_type: "refresh_token"
+      }
+    }
+    response = HTTParty.post(auth_uri, options)
+    if response.success?
+      json_data = response.parsed_response
+      puts json_data
+      @access_token = json_data["access_token"]
+      @expires_in = Time.now + json_data["expires_in"]
+      puts "Access Token updated"
+      puts "Access Token expires in: #{@expires_in}"
+    else
+      puts "Failed to refresh the access token"
+      puts "Error came from Zoho: #{response.code}"
+    end
+  end
+
   def get_access_token
     # Prepare the request options
     auth_uri = "https://accounts.zoho.com/oauth/v2/token"
