@@ -30,7 +30,15 @@ class MeetingsController < ApplicationController
       puts "Summary: #{summary}"
       puts "Report URL: #{report_url}"
 
-      submit_to_zoho_crm(params)
+      if @access_token.nil? || Time.now > @expires_in
+        refresh_access_token
+      end
+      if @access_token.present?
+        submit_to_zoho_crm(params)
+      else
+        response = { message: "Failed to get access token" }
+        render json: response
+      end
     else
       response = { message: "We did not receive meeting data" }
       render json: response
