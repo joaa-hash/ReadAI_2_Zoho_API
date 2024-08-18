@@ -1,7 +1,18 @@
 class MeetingsController < ApplicationController
   include HTTParty
   base_uri "https://www.zohoapis.com/crm/v2"
+  def initialize
+    @zoho_client_id = ENV["ZOHO_CLIENT_ID"]
+    @zoho_client_secret = ENV["ZOHO_CLIENT_SECRET"]
+    @zoho_auth_code = ENV["ZOHO_AUTH_CODE"]
 
+    # store the access token in the session
+    @access_token
+    @refersh_token
+    @expires_in
+
+    get_access_token
+  end
   def index
     response = { message: "Hello, World!" }
     render json: response
@@ -57,6 +68,38 @@ class MeetingsController < ApplicationController
     else
       puts "Failed to create meeting in Zoho CRM"
       render json: { message: "Failed to create meeting in Zoho CRM", error: response.body }, status: :bad_request
+    end
+  end
+
+  def get_access_token
+    # Prepare the request options
+    auth_uri = "https://accounts.zoho.com/oauth/v2/token"
+    options = {
+      headers: {
+        "Content-Type" => "multipart/form-data"
+      },
+      body: {
+        client_id: @zoho_client_id,
+        client_secret: @zoho_client_secret,
+        code: @zoho_auth_code,
+        redirect_uri: "",
+        grant_type: "authorization_code"
+      }
+    }
+    # Sending the POST request
+    response = HTTParty.post(auth_uri, options)
+    if response.success?
+      json_data = response.parsed_response
+      @access_token = json_data["access_token"]
+      @refresh_token = json_data["refresh_token"]
+      @expires_in = json_data["expires_in"]
+      puts "Access Token: #{@access_token}"
+      puts "Refresh Token: #{@refresh_token}"
+      puts "Expires In: #{@expires_in}"
+      json_data
+    else
+      pust "Error: #{response.code} - #{response.body}"
+      nil
     end
   end
 end
