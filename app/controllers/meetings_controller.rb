@@ -1,6 +1,5 @@
 class MeetingsController < ApplicationController
   include HTTParty
-  base_uri "https://www.zohoapis.com/crm/v2"
   def initialize
     @zoho_client_id = ENV["ZOHO_CLIENT_ID"]
     @zoho_client_secret = ENV["ZOHO_CLIENT_SECRET"]
