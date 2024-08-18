@@ -112,6 +112,9 @@ class MeetingsController < ApplicationController
   end
 
   def get_access_token
+    # Get access token is intended to get access and refresh token
+    # for the first time, it requires a code generated from the Zoho
+    # authorization page
     # Prepare the request options
     auth_uri = "https://accounts.zoho.com/oauth/v2/token"
     options = {
