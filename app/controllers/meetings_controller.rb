@@ -100,7 +100,6 @@ class MeetingsController < ApplicationController
     response = HTTParty.post(auth_uri, options)
     if response.success?
       json_data = response.parsed_response
-      puts json_data
       @access_token = json_data["access_token"]
       @expires_in = Time.now + json_data["expires_in"]
       puts "Access Token updated"
