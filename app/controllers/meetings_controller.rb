@@ -62,7 +62,9 @@ class MeetingsController < ApplicationController
             session_id: params[:session_id],
             summary: params[:summary],
             action_items: params[:action_items],
-            report_url: params[:report_url]
+            report_url: params[:report_url],
+            start_time: params[:start_time],
+            end_time: params[:end_time]
           }
         ]
 
