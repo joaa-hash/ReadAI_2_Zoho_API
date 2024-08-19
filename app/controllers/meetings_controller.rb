@@ -58,7 +58,6 @@ class MeetingsController < ApplicationController
         data: [
           {
             Name: params[:title],
-            title: params[:title],
             session_id: params[:session_id],
             summary: params[:summary],
             action_items: params[:action_items],
