@@ -19,8 +19,8 @@ class MeetingsController < ApplicationController
       # we get session_id, sumary, report_url, start_time, end_time and title
       session_id = params[:session_id]
       title = params[:title]
-      start_time = format_datetime(params[:start_time])
-      end_time = format_datetime(params[:end_time])
+      start_time = params[:start_time]
+      end_time = params[:end_time]
       summary = params[:summary]
       report_url = params[:report_url]
       puts "Session ID: #{session_id}"
@@ -62,8 +62,8 @@ class MeetingsController < ApplicationController
             summary: params[:summary],
             action_items: params[:action_items],
             report_url: params[:report_url],
-            start_time: params[:start_time],
-            end_time: params[:end_time]
+            start_time: "#{format_datetime(params[:start_time])}",
+            end_time: "#{format_datetime(params[:end_time])}"
           }
         ]
 
