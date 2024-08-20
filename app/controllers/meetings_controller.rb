@@ -62,8 +62,8 @@ class MeetingsController < ApplicationController
             summary: params[:summary],
             action_items: params[:action_items],
             report_url: params[:report_url],
-            start_time: params[:start_time],
-            end_time: params[:end_time]
+            start_time: "#{format_datetime(params[:start_time])}",
+            end_time: "#{format_datetime(params[:end_time])}"
           }
         ]
 
@@ -144,5 +144,16 @@ class MeetingsController < ApplicationController
       puts "Error came from Zoho: #{response.code} - #{response.message}"
       nil
     end
+  end
+
+  def format_datetime(datetime_str)
+    puts "input datetime: #{datetime_str}"
+    # Parse the datetime string to a DateTime object
+    datetime = DateTime.parse(datetime_str)
+    # Format the DateTime object to the ISO8601 format
+    # as required by Zoho CRM
+    formatted = datetime.iso8601
+    puts "formatted datetime: #{formatted}"
+    formatted
   end
 end
