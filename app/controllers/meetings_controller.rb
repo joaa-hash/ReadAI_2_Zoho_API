@@ -19,8 +19,8 @@ class MeetingsController < ApplicationController
       # we get session_id, sumary, report_url, start_time, end_time and title
       session_id = params[:session_id]
       title = params[:title]
-      start_time = params[:start_time]
-      end_time = params[:end_time]
+      start_time = format_datetime(params[:start_time])
+      end_time = format_datetime(params[:end_time])
       summary = params[:summary]
       report_url = params[:report_url]
       puts "Session ID: #{session_id}"
@@ -144,5 +144,14 @@ class MeetingsController < ApplicationController
       puts "Error came from Zoho: #{response.code} - #{response.message}"
       nil
     end
+  end
+
+  def format_datetime(datetime_str)
+    puts "input datetime: #{datetime_str}"
+    # Parse the datetime string to a DateTime object
+    datetime = DateTime.parse(datetime_str)
+    formatted = datetime.strftime("%Y-%m-%dT%H:%M:%S%Z")
+    puts "formatted datetime: #{formatted}"
+    formatted
   end
 end
