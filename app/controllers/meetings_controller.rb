@@ -49,10 +49,10 @@ class MeetingsController < ApplicationController
             action_items: params[:action_items],
             report_url: params[:report_url],
             start_time: "#{format_datetime(params[:start_time])}",
-            end_time: "#{format_datetime(params[:end_time])}"
+            end_time: "#{format_datetime(params[:end_time])}",
+            participants: format_participants(params[:participants])
           }
         ]
-
       }.to_json
     }
     # Sending the POST request
@@ -141,5 +141,15 @@ class MeetingsController < ApplicationController
     formatted = datetime.iso8601
     puts "formatted datetime: #{formatted}"
     formatted
+  end
+
+  def format_participants(participants)
+    formatted_participants = participants.map do |participant|
+      {
+        name1: participant["name"],
+        email: participant["email"]
+      }
+    end
+    formatted_participants
   end
 end
