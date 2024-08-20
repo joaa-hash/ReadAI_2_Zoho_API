@@ -150,7 +150,9 @@ class MeetingsController < ApplicationController
     puts "input datetime: #{datetime_str}"
     # Parse the datetime string to a DateTime object
     datetime = DateTime.parse(datetime_str)
-    formatted = datetime.strftime("%Y-%m-%dT%H:%M:%S%Z")
+    # Format the DateTime object to the ISO8601 format
+    # as required by Zoho CRM
+    formatted = datetime.iso8601
     puts "formatted datetime: #{formatted}"
     formatted
   end
