@@ -213,6 +213,9 @@ Feel free to check the [issues page](https://github.com/Diegogagan2587/ReadAI_2_
  - **Is there any Ruby SDK (software developer kit) ?**
  - Yes, there is and we will explore it further in the future, learn more in [Ruby SDK for Zoho CRM APIs](https://www.zoho.com/crm/developer/docs/sdk/server-side/ruby-sdk.html)
 
+ - **Where do I find more Zoho CRM Developer resources?**
+ - in [Help Develper](https://www.zoho.com/crm/help/developer/?src=zcp_rsc)
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
