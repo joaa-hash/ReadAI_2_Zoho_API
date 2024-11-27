@@ -103,7 +103,7 @@ cd my-folder
 proceed to clone:
 
 ```sh
-git clone git@github.com:Diegogagan2587/ReadAI_2_Zoho_API.git
+git clone git@github.com:joaa-hash/ReadAI_2_Zoho_API.git
 ```
 
 ### Install
@@ -164,10 +164,9 @@ Once the Application is Deployed, please add the `https://base-url.com/meetings/
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Diego Vidal Lopez**
+👤 **Josue Acuna**
 
-- GitHub: [@Diegogagan2587](https://github.com/Diegogagan2587)
-- LinkedIn: [Diego Vidal](https://www.linkedin.com/in/diego-vidal-lopez/)
+- GitHub: [@joaa-hash](https://github.com/joaa-hash)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -188,7 +187,7 @@ Once the Application is Deployed, please add the `https://base-url.com/meetings/
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Diegogagan2587/ReadAI_2_Zoho_API/issues).
+Feel free to check the [issues page](https://github.com/joaa-hash/ReadAI_2_Zoho_API/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
